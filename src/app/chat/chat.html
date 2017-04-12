@@ -1,0 +1,55 @@
+<div class="container chat-total">
+
+  <!--&lt;!&ndash; HEADER AND TODO COUNT &ndash;&gt;-->
+  <!--<div class="jumbotron text-center">-->
+      <!--<h1> <span class="label label-info">{{chats.length}}</span></h1>-->
+  <!--</div>-->
+
+
+
+  <!--<div class="col-sm-8 col-sm-offset-2 form-group">-->
+      <!--&lt;!&ndash; BIND THIS VALUE TO todoData.text IN ANGULAR &ndash;&gt;-->
+      <!--<input type="text" class="form-control input-md text-center" placeholder="You have to enter your name before chatting" [(ngModel)]="chatData.name" required>-->
+      <!--<span class="input-group-btn">-->
+                  <!--<button type="submit" class="btn btn-primary btn-md" [disabled]="chatData.name==''">Submit</button>-->
+              <!--</span>-->
+  <!--</div>-->
+
+ <div class="panel panel-primary col-sm-8 col-sm-offset-2">
+  <div id="chat-header" class="row panel-heading">
+      Chat Web
+  </div>
+  <!-- TODO LIST -->
+  <div id="todo-list" class="row panel-body">
+      <div  #scrollMe id="chatlist">
+
+          <!-- LOOP OVER THE chats IN $scope.chats -->
+          <div class="chatbox col-sm-12" *ngFor="#chat of (chats.slice(chats.length - 100,chats.length) )">
+                  <p class="time col-sm-3 col-xs-12">{{chat.date.slice(4,chat.date.length)}}</p>
+              <div class="col-sm-9 col-xs-12"><p class="content"><strong>{{ chat.name}}: </strong><span>{{ chat.text }}</span></p></div>
+
+          </div>
+
+      </div>
+  </div>
+
+  <!-- FORM TO CREATE chats -->
+
+   <div id="todo-form" class="row panel-footer">
+      <div class=" text-center">
+          <form>
+              <div class="form-group">
+                  <!-- BIND THIS VALUE TO todoData.text IN ANGULAR -->
+                  <input type="text" class="form-control input-md text-center chat-content" placeholder="I am a developer" [(ngModel)]="chatData.text" [disabled]="chatData.name==''" required>
+
+              <!-- createToDo() WILL CREATE NEW chats -->
+              <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary btn-md"
+                    (click)="createChat()" [disabled]="chatData.text==''">Send</button>
+              </span>
+              </div>
+          </form>
+      </div>
+  </div>
+ </div>
+</div>
